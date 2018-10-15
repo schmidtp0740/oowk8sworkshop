@@ -13,7 +13,7 @@
 # Step 1
 - build worker container and get in terminal
 ```
-./start.sh
+docker build -t worker .
 ```
 
 - setup oci config files
@@ -32,8 +32,16 @@ cat ~/.oci/oci_api_key_public.pem
 
 - deploy infra
 ```
-source infraAutomation/infraAutomation.sh
+source deployInfra.sh
 ```
 
 - enter compartment ocid
 - watch all the resources needed deploy automatically and the web app deployed
+
+- Download Wallet
+- clone the aOne app
+```
+git clone https://github.com/schmidtp0740aOne
+```
+
+- deploy the app to the cluster

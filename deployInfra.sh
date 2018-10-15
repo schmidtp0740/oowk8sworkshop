@@ -6,6 +6,8 @@ export TENANCYOCID=$(cat $HOME/.oci/config | grep tenancy= | sed -e 's/tenancy=/
 
 export USEROCID=$(cat $HOME/.oci/config | grep user= | sed -e 's/user=//')
 
+export FINGERPRINT=$(cat $HOME/.oci/config | grep fingerprint= | sed -e 's/fingerprint=//')
+
 export REGION=$(cat $HOME/.oci/config | grep region= | sed -e 's/region=//')
 
 echo "Enter compartment-id: "
@@ -28,7 +30,7 @@ TENANCY=$(oci iam compartment get --compartment-id "${TENANCYOCID}" --query "dat
 
 if [ "${TENANCY}" == "" ]
 then
-  echo "missing complete ~/.oci/config file"
+  echo "need to complete ~/.oci/config file"
   exit
 else
   echo "Tenancy name: ${TENANCY}"
@@ -38,19 +40,19 @@ USERNAME=$(oci iam user get --user-id "${USEROCID}" --query "data.name" |  sed '
 
 if [ "${USERNAME}" == "" ]
 then
-  echo "missing complete ~/.oci/config file"
+  echo "need to complete ~/.oci/config file"
   exit 
 else
   echo "Username: ${USERNAME}"
 fi
 
-DB_PASSWORD="Str0ng@W1nner"
+export DB_PASSWORD="Str0ng@W1nner"
 
 export AUTHTOKEN=$(oci iam auth-token create --description "token for OCIR" --user-id "${USEROCID}"  --query "data.token" |  sed 's/"//g')
 
 if [ "${AUTHTOKEN}" == "" ]
 then
-  echo "missing complete ~/.oci/config file"
+  echo "need to complete ~/.oci/config file"
   exit 
 else
   echo "auth token: ${AUTHTOKEN}"
@@ -62,7 +64,7 @@ fi
 
 echo "Creating Oracle Autonomous Database"
 
-source /root/infraAutomation/deployOracleDB.sh &
+source deployOracleDB.sh &
 
 # TODO
 # need username/ password/ connectionstring

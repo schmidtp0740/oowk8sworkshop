@@ -1,0 +1,6 @@
+.git
+kubeconfig
+.gitignore
+Dockerfile
+README.md
+start.sh

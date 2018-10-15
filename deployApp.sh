@@ -9,7 +9,7 @@ echo "auth token" $AUTHTOKEN
 
 echo "${AUTHTOKEN}" | docker login $OCIR -u $TENANCY/$USERNAME --password-stdin
 
-docker build -t $OCIR/$TENANCY/aone:latest ./aOne/
+docker build -t $OCIR/$TENANCY/aone:latest aOne/
 
 
 # --------------------- Deploy aOne image to OCIR ------------

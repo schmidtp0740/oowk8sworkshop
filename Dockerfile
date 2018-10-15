@@ -15,4 +15,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s
 WORKDIR /root/
 
 RUN curl -LO https://download.docker.com/linux/centos/7/x86_64/stable/Packages/docker-ce-18.06.1.ce-3.el7.x86_64.rpm && \
-    yum install /root/docker-ce-18.06.1.ce-3.el7.x86_64.rpm -y
+    yum install /root/docker-ce-18.06.1.ce-3.el7.x86_64.rpm -y && \
+    rm docker-ce-18.06.1.ce-3.el7.x86_64.rpm
+
+ADD . .
