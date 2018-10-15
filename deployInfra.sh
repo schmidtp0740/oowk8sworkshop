@@ -92,7 +92,6 @@ echo "Completed creating internet gateway"
 # create security lists
 echo "Creating security lists"
 echo "Creating workers security list"
-# export oci_security_list_worker=$(oci network security-list create --compartment-id "${COMPARTMENTOCID}" --vcn-id $oci_vcn_ocid --display-name "workers-security-list" --wait-for-state "AVAILABLE" --egress-security-rules file:///root/infraAutomation/worker-security-list-egress-rules.json --ingress-security-rules file:///root/infraAutomation/worker-security-list-ingress-rules.json --query "data.id" |  sed 's/"//g')
 export oci_security_list_worker=$(oci network security-list create --compartment-id "${COMPARTMENTOCID}" \
 --vcn-id $oci_vcn_ocid \
 --display-name "workers-security-list" \
@@ -103,7 +102,6 @@ export oci_security_list_worker=$(oci network security-list create --compartment
 
 echo "Completed creating workers security list"
 echo "Creating loadbalancer security list"
-# export oci_security_list_loadbalancer=$(oci network security-list create --compartment-id "${COMPARTMENTOCID}" --vcn-id $oci_vcn_ocid --display-name "loadbalancer-security-list" --wait-for-state "AVAILABLE" --egress-security-rules file:///root/infraAutomation/loadbalancer-security-list-egress-rules.json --ingress-security-rules file:///root/infraAutomation/loadbalancer-security-list-ingress-rules.json --query "data.id" |  sed 's/"//g')
 export oci_security_list_loadbalancer=$(oci network security-list create --compartment-id "${COMPARTMENTOCID}" \
 --vcn-id $oci_vcn_ocid --display-name "loadbalancer-security-list" \
 --wait-for-state "AVAILABLE" \
