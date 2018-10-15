@@ -15,6 +15,10 @@
 ```
 docker build -t worker .
 ```
+- start the container
+```
+docker run -it -v /var/run/docker.sock:/var/run/docker.sock  -v `pwd`:/root worker /bin/bash
+```
 
 - setup oci config files
 ```
